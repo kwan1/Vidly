@@ -14,11 +14,26 @@ namespace Vidly.Controllers
         {
             var movie = new Movie() { Name = "Fast and Furious" };
             //Action results ---->
-            //  return View(movie);
-            //return Content("Hello World!");
-            // return HttpNotFound();
-            //return new EmptyResult();
-            return RedirectToAction("Index", "Home", new { page = 1, sortBy = "name" });
+            return View(movie);
+
         }
+        //action parameter
+        public ActionResult Edit(int id)
+        {
+            return Content("id=" + id);
+        }
+
+        //movies
+        public ActionResult Index(int? pageIndex, string sortBy)
+        {
+            if (!pageIndex.HasValue)
+                pageIndex = 1;
+
+            if (String.IsNullOrWhiteSpace(sortBy))
+                sortBy = "Name";
+            //movies/released/2015/04
+            return Content(String.Format("pageIndex ={0}&sortBy ={1}", pageIndex, sortBy));
+        }
+
     }
 }

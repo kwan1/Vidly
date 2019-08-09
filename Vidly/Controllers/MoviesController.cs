@@ -4,16 +4,31 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
+using Vidly.ViewModel;
 
 namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
         // GET: Movies/Random
-        public ActionResult ByReleaseDate(int year, int month)
+        //attribute route
+      
+        public ActionResult Random()
         {
-           
-            return Content(year + "/" + month);
+            var movie = new Movie() { Name = "Fast and Furious 4" };
+
+            var customers = new List<Customer> {
+                new Customer {Name= "Customer 1"},
+                new Customer { Name = "Customer 2"}
+            };
+            var viewModel = new RandomMovieViewModel
+            {
+                Movie = movie,
+                Customers = customers
+
+            };
+            return View(viewModel);
+
 
         }
   

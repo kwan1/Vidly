@@ -10,30 +10,13 @@ namespace Vidly.Controllers
     public class MoviesController : Controller
     {
         // GET: Movies/Random
-        public ActionResult Random()
+        public ActionResult ByReleaseDate(int year, int month)
         {
-            var movie = new Movie() { Name = "Fast and Furious" };
-            //Action results ---->
-            return View(movie);
+           
+            return Content(year + "/" + month);
 
         }
-        //action parameter
-        public ActionResult Edit(int id)
-        {
-            return Content("id=" + id);
-        }
-
-        //movies
-        public ActionResult Index(int? pageIndex, string sortBy)
-        {
-            if (!pageIndex.HasValue)
-                pageIndex = 1;
-
-            if (String.IsNullOrWhiteSpace(sortBy))
-                sortBy = "Name";
-            //movies/released/2015/04
-            return Content(String.Format("pageIndex ={0}&sortBy ={1}", pageIndex, sortBy));
-        }
-
+  
+     
     }
 }
